@@ -1,0 +1,141 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+console.log('********************* STARTS 25th September');
+var building = (function () {
+    function building(address, units) {
+        this.address = address;
+        this.units = units;
+    }
+    building.prototype.display = function () {
+        console.log('Address :' + this.address);
+        console.log('Units :' + this.units);
+    };
+    return building;
+}());
+var bld1 = new building("1 main street", 4);
+var bld2 = new building("13 park ave", 5);
+bld1.display();
+bld2.display();
+var properties = [bld1, bld2];
+console.log('--------------------------------');
+var BizTrip = (function () {
+    function BizTrip(destination, days) {
+        this.destination = destination;
+        this.days = days;
+    }
+    ;
+    BizTrip.prototype.display = function () {
+        console.log(this.destination + "," + this.days);
+    };
+    return BizTrip;
+}());
+var trip = new BizTrip("new york", 3);
+trip.display();
+console.log('--------------------------------');
+//Parameter and Return value types
+function getString() {
+    var str = "My String";
+    return str;
+}
+function logMessage(message) {
+    console.log(message);
+}
+logMessage(getString());
+console.log('--- let, var and const - let and const in ES6.');
+for (var i = 0; i < 5; i++) {
+    console.log(i);
+}
+console.log('--- Arrow functions - shorthand way top define functions');
+var addr1 = function (a, b) { return a + b; };
+var addr2 = function (a, b) { return a + b; };
+console.log(addr1(1, 2));
+console.log(addr1(1, 2));
+console.log('--- function with NO params');
+var noparams = function () { return "Hello"; };
+//Function with multiple lines of code
+var multipleLinesofcode = function (a, b) { a += b; a += b; return a; };
+console.log(multipleLinesofcode("x", "y"));
+console.log('********************* ENDS 25th September');
+console.log('********************* STARTS 27th September');
+console.log('--- Class and Inheritence demo');
+var Product = (function () {
+    function Product(id) {
+        this.id = id;
+    }
+    Product.prototype.printdetails = function () {
+        console.log("Title: " + this.title);
+        console.log("ID: " + this.id);
+        console.log("Price: " + this.price);
+    };
+    return Product;
+}());
+var Tour = (function (_super) {
+    __extends(Tour, _super);
+    function Tour(id, duration) {
+        var _this = _super.call(this, id) || this;
+        _this.duration = duration;
+        return _this;
+    }
+    Tour.prototype.printdetails = function () {
+        _super.prototype.printdetails.call(this);
+        console.log("Duration: " + this.duration);
+    };
+    return Tour;
+}(Product));
+function test(p) {
+    p.printdetails();
+}
+var T = new Tour(1, "8 Hours");
+T.title = "Trip to Goa";
+T.price = 1200;
+test(T);
+console.log('--- INTERFACE');
+var TourInterface = (function (_super) {
+    __extends(TourInterface, _super);
+    function TourInterface(id, duration) {
+        var _this = _super.call(this, id) || this;
+        _this.duration = duration;
+        return _this;
+    }
+    TourInterface.prototype.printdetails = function () {
+        _super.prototype.printdetails.call(this);
+        console.log("Duration: " + this.duration);
+    };
+    return TourInterface;
+}(Product));
+var cancelableobjectclass = (function () {
+    function cancelableobjectclass() {
+    }
+    return cancelableobjectclass;
+}());
+function cancelBookingwithoutgenerics(c) {
+    console.log("canceling booking. Charges: %d", c.cancelationFee);
+}
+var Tinterface_obj = new TourInterface(1, "8 Hours");
+var X = new cancelableobjectclass();
+Tinterface_obj.title = "Trip to Goa";
+Tinterface_obj.price = 1200;
+Tinterface_obj.cancelationFee = 100.00;
+X.cancelationFee = 200.00;
+cancelBookingwithoutgenerics(Tinterface_obj);
+console.log('--- Generics');
+function cancelBooking(C) {
+    console.log("canceling: %s (%d)", C.title, C.id);
+    console.log("Price: %d", C.price);
+    console.log("cancellation Fee: %d", C.cancelationFee);
+    console.log("Total Refund: %d", C.price - C.cancelationFee);
+}
+// function identity(a: number): string {
+//     return arg;
+// }
+function identity(arg) {
+    return arg;
+}
