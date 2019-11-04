@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <h2>Instructions</h2>
+       Create a Form with the following Controls and Validators
+          <ul>
+            <li>Project Name (should not be empty)</li>
+            <li>Mail (should not be a empty and a valid email)</li>
+            <li>Project Status Dropdown, with three values: 'Stable', 'Critical', 'Finished'</li>
+            <li>Submit Button</li>
+          </ul>
+          <p>
+          Add your own Validator which doesn't allow "Test" as a Project Name</p>
+          <p>
+          Also implement that Validator as an async Validator (replace the other one)</p>
+          <p>
+          Upon submitting the form, simply print the value to the console</p>
+    </div>
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <h2>Form</h2>
+      <form [formGroup]="projectForm" >
+
+        <div class="col-xs-12 col-sm-4 col-md-4">
+          <mat-form-field>
+            <mat-label>Project name</mat-label>
+            <input matInput formControlName="name"/>
+            <mat-error>
+              <span *ngIf="projectForm.get('name').errors?.required">Project name is required</span>
+              <span *ngIf="projectForm.get('name').errors?.invalidName">Test project name is not allowed</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-xs-12 col-sm-4 col-md-4">
+          <mat-form-field>
+            <mat-label>E-mail</mat-label>
+            <input matInput formControlName="mail"/>
+            <mat-error>
+              <span *ngIf="projectForm.get('mail').errors?.required">Email is required</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-xs-12 col-sm-4 col-md-4">
+          <mat-form-field>
+            <mat-select formControlName="status">
+              <mat-option value="Stable">
+                Stable
+              </mat-option>
+              <mat-option value="Critical">
+                Critical
+              </mat-option>
+              <mat-option value="Finished">
+                Finished
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </form>
+
+      <div class="col-xs-12 col-sm-4 col-md-4" style="margin-top: 20px">
+        <button type="button" class="btn btn-primary" (click)="submitForm()">Submit</button>
+      </div>
+
+    </div>
+    </div>
+</div>
